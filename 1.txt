@@ -1,0 +1,25 @@
+1.1
+SELECT d.id
+FROM departments d
+LEFT JOIN dep_names dn ON d.id = dn.department_id
+WHERE dn.id IS NULL;
+
+1.2
+SELECT d.id
+FROM departments d
+JOIN dep_names dn ON d.id = dn.department_id
+GROUP BY d.id
+HAVING COUNT(dn.id) >= 2;
+
+1.3
+SELECT d.*, dn.name
+FROM departments d
+JOIN (
+    SELECT department_id, name, id
+    FROM dep_names
+    WHERE (department_id, id) IN (
+        SELECT department_id, MIN(id)
+        FROM dep_names
+        GROUP BY department_id
+    )
+) dn ON d.id = dn.department_id;

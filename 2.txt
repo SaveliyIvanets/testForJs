@@ -1,0 +1,20 @@
+CREATE TABLE objects (
+    id INTEGER PRIMARY KEY,
+    time_stamp TIMESTAMP,
+    parent_id INTEGER REFERENCES objects(id) ON DELETE SET NULL
+);
+CREATE TABLE contacts (
+    object_id INTEGER PRIMARY KEY REFERENCES objects(id) ON DELETE CASCADE,
+    server VARCHAR(255),
+    email VARCHAR(255)
+);
+CREATE TABLE contact_users (
+    id SERIAL PRIMARY KEY,
+    contact_id INTEGER REFERENCES contacts(object_id) ON DELETE CASCADE,
+    user_name VARCHAR(255)
+);
+CREATE TABLE addresses (
+    id SERIAL PRIMARY KEY,
+    object_id INTEGER REFERENCES objects(id) ON DELETE CASCADE,
+    address VARCHAR(255)
+);

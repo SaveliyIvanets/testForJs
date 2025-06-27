@@ -1,0 +1,10 @@
+{
+  "name": "TestForKodexJs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true
+}
